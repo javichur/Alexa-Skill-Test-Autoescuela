@@ -1,0 +1,24 @@
+{
+    "name": "Test Autoescuela",
+    "version": "2.0.0",
+    "description": "Preguntas de test de autoescuela, para permiso B de conducir en España.",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+      "autoescuela",
+      "test",
+      "permiso",
+      "conducir",
+      "coche",
+      "examen",
+      "dgt"
+    ],
+    "author": "Javier C",
+    "license": "MIT",
+    "dependencies": {
+      "ask-sdk": "^2.0.0"
+    }
+  }
+  
