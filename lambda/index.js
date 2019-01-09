@@ -15,8 +15,8 @@ const preguntas = require('./preguntas');
 const skillBuilder = Alexa.SkillBuilders.standard();
 const PREGUNTAS = preguntas.PREGUNTAS_ES_ES;
 const SKILL_NAME = 'Test Autoescuela';
-const WELCOME_MESSAGE = '¡Bienvenido a ' + SKILL_NAME + '! Voy a hacerte preguntas para que practiques el examen de permiso B de conducir. Las preguntas se han extraído de la web de la DGT en 2018. Contesta a las preguntas diciendo A, B o C. ¡Empezamos!';
-const WELCOME_REPROMPT = 'Contesta a las preguntas diciendo A, B o C. Para recibir ayuda, por favor di ayuda. Para salir, di salir.';
+const WELCOME_MESSAGE = '¡Bienvenido a ' + SKILL_NAME + '! Voy a hacerte preguntas para que practiques el examen de permiso B de conducir. Las preguntas se han extraído de la web de la DGT en 2018. Contesta a las preguntas diciendo A, B, C... ¡Empezamos!';
+const WELCOME_REPROMPT = 'Contesta a las preguntas diciendo A, B, C... Para recibir ayuda, por favor di ayuda. Para salir, di salir.';
 const DISPLAY_CARD_TITLE = SKILL_NAME;
 const HELP_MESSAGE = 'Voy a hacerte preguntas para que practiques el examen de permiso B de conducir. Las preguntas se han extraído de la web de la DGT en 2018. Contesta a la última pregunta diciendo A,B o C. También puedes salir. ¿Qué respondes?';
 const HELP_REPROMPT = HELP_MESSAGE;
@@ -53,11 +53,11 @@ const RespuestaHandler = {
 
     const itemSlot = handlerInput.requestEnvelope.request.intent.slots.respuesta;
     
-    let itemNameMatched = "nada";  // lo que matchea con la respuesta dada por el usuario (A, B o C).
+    let itemNameMatched = "nada";  // lo que matchea con la respuesta dada por el usuario (A, B, C...).
         
     if (itemSlot && itemSlot.resolutions && 
       itemSlot.resolutions.resolutionsPerAuthority) {
-        /* Guardamos la opción elegida por el usuario (A, B o C); no lo que ha pronunciado. 
+        /* Guardamos la opción elegida por el usuario (A, B, C...); no lo que ha pronunciado. 
            Es decir, sí ha pronunciado "be" lo que nos guardamos es "B". 
            Esto lo podemos hacer porque a la hora de crear el modelo, hemos definido "be" como sinónimo de "B".
         */
@@ -69,20 +69,18 @@ const RespuestaHandler = {
 
 
     if (itemSlot && itemSlot.value) {
-      let index = -1; // índice de la opción escogida en el array de respuestas (A=0; B=1; C=2)
-      if(itemNameMatched == "A") index = 0;
-      else if(itemNameMatched == "B") index = 1;
-      else if(itemNameMatched == "C") index = 2;
-      else{        
+      
+       // índice de la opción escogida en el array de respuestas (A=0; B=1; C=2, etc...)
+      let index = itemNameMatched.charCodeAt() - 'A'.charCodeAt()
+      
+      if(sessionAttributes.lastPregunta.respuestas.length < (index+1)){ // si no existe la respuesta seleccionada...
         return handlerInput.responseBuilder
-          .speak("Respuesta no válida. Contesta con A, B o C.")
+          .speak("Respuesta incorrecta. La respuesta " + itemNameMatched + " no existe en esta pregunta. Vuelve a intentarlo. " + preguntaToString(sessionAttributes.lastPregunta))
           .withSimpleCard(DISPLAY_CARD_TITLE)
           .reprompt(HELP_REPROMPT)
           .getResponse();
       }
-      
-      /* si la respuesta elegida es la correcta... */
-      if(sessionAttributes.lastPregunta.respuestas[index].correcta == true){
+      else if(sessionAttributes.lastPregunta.respuestas[index].correcta == true){ /* si la respuesta elegida es la correcta... */
         
         var item = obtenerPreguntaAleatoriaYGuardarlaEnSesion(handlerInput); // obtener la siguiente pregunta
         
@@ -101,6 +99,40 @@ const RespuestaHandler = {
       }      
     }
   }
+};
+
+
+const NextHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.NextIntent';
+  },
+  handle(handlerInput) {    
+    var item = obtenerPreguntaAleatoriaYGuardarlaEnSesion(handlerInput); // obtener la siguiente pregunta
+        
+    return handlerInput.responseBuilder
+      .speak("Siguiente pregunta: " + preguntaToString(item))
+      .withSimpleCard(DISPLAY_CARD_TITLE)
+      .reprompt(HELP_REPROMPT)
+      .getResponse();
+  },
+};
+
+
+const RepeatHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.RepeatIntent';
+  },
+  handle(handlerInput) {    
+    const sessionAttributes = handlerInput.attributesManager.getSessionAttributes();
+        
+    return handlerInput.responseBuilder
+      .speak("Repito la pregunta: " + preguntaToString(sessionAttributes.lastPregunta))
+      .withSimpleCard(DISPLAY_CARD_TITLE)
+      .reprompt(HELP_REPROMPT)
+      .getResponse();
+  },
 };
 
 
@@ -163,15 +195,15 @@ const ErrorHandler = {
 /* 4. Métodos adicionales */
 
 /**
-  * @desc convierte una pregunta (enunciado y sus 3 opciones) en una única cadena de texto
+  * @desc convierte una pregunta (enunciado y sus N opciones) en una única cadena de texto
   * @param pregunta $pregunta
   * @return string - texto listo para ser pronunciado por Alexa, incluye pregunta final.
 */
 function preguntaToString(pregunta){
-    let ret = pregunta.texto;
-    ret += " A: " + pregunta.respuestas[0].respuesta + " ";
-    ret += "B: " + pregunta.respuestas[1].respuesta + " ";
-    ret += "C: " + pregunta.respuestas[2].respuesta + " ";
+    let ret = pregunta.texto + " ";
+    for(var i=0; i<pregunta.respuestas.length; i++){
+      ret += String.fromCharCode('A'.charCodeAt() + i) + ": " + pregunta.respuestas[i].respuesta + " ";
+    }
 
     /* Importante terminar con una pregunta, para que el usuario sepa 
     que tiene que contestar y para que Amazon certifique la Skill. */
@@ -214,6 +246,8 @@ exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
     RespuestaHandler,
+    NextHandler,
+    RepeatHandler,
     HelpHandler,
     ExitHandler,
     SessionEndedRequestHandler
