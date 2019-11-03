@@ -1,0 +1,92 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Sample Alexa Skill with clean code and APL support",
+          "examplePhrases": [
+            "Alexa open driving test"
+          ],
+          "name": "driving-test-clean-code",
+          "description": "Sample Alexa Skill with clean code and APL support"
+        },
+        "es-ES": {
+          "summary": "Ejemplo de Alexa Skill con código limpio y soporte APL",
+          "examplePhrases": [
+            "Alexa abre test autoescuela"
+          ],
+          "name": "driving-test-clean-code",
+          "description": "Sample Alexa Skill with clean code and APL support"
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Sample Testing Instructions.",
+      "category": "KNOWLEDGE_AND_TRIVIA",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda/custom",
+          "uri": "ask-custom-driving-test-clean-code-default"
+        },
+        "interfaces": [
+          {
+            "type": "ALEXA_PRESENTATION_APL",
+            "supportedViewports": [
+              {
+                "mode": "HUB",
+                "shape": "ROUND",
+                "minWidth": 480,
+                "maxWidth": 480,
+                "minHeight": 480,
+                "maxHeight": 480
+              },
+              {
+                "mode": "HUB",
+                "shape": "RECTANGLE",
+                "minWidth": 1024,
+                "maxWidth": 1024,
+                "minHeight": 600,
+                "maxHeight": 600
+              },
+              {
+                "mode": "HUB",
+                "shape": "RECTANGLE",
+                "minWidth": 1280,
+                "maxWidth": 1280,
+                "minHeight": 800,
+                "maxHeight": 800
+              },
+              {
+                "mode": "TV",
+                "shape": "RECTANGLE",
+                "minWidth": 960,
+                "maxWidth": 960,
+                "minHeight": 540,
+                "maxHeight": 540
+              },
+              {
+                "mode": "HUB",
+                "shape": "RECTANGLE",
+                "minWidth": 960,
+                "maxWidth": 960,
+                "minHeight": 480,
+                "maxHeight": 480
+              }
+            ]
+          }
+        ],
+        "regions": {
+          "EU": {
+            "endpoint": {
+              "sourceDir": "lambda/custom",
+              "uri": "ask-custom-driving-test-clean-code-default"
+            }
+          }
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}

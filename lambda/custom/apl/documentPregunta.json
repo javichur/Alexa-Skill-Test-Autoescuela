@@ -1,0 +1,438 @@
+{
+    "type": "APL",
+    "version": "1.0",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.0.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Stock color for the light theme",
+            "colors": {
+                "colorTextPrimary": "#151920"
+            }
+        },
+        {
+            "description": "Stock color for the dark theme",
+            "when": "${viewport.theme == 'dark'}",
+            "colors": {
+                "colorTextPrimary": "#f0f1ef"
+            }
+        },
+        {
+            "description": "Standard font sizes",
+            "dimensions": {
+                "textSizeBody": 48,
+                "textSizePrimary": 27,
+                "textSizeSecondary": 23,
+                "textSizeSecondaryHint": 25
+            }
+        },
+        {
+            "description": "Common spacing values",
+            "dimensions": {
+                "spacingThin": 6,
+                "spacingSmall": 12,
+                "spacingMedium": 24,
+                "spacingLarge": 48,
+                "spacingExtraLarge": 72
+            }
+        },
+        {
+            "description": "Common margins and padding",
+            "dimensions": {
+                "marginTop": 40,
+                "marginLeft": 60,
+                "marginRight": 60,
+                "marginBottom": 40
+            }
+        }
+    ],
+    "styles": {
+        "textStyleBase": {
+            "description": "Base font description; set color and core font family",
+            "values": [
+                {
+                    "color": "@colorTextPrimary",
+                    "fontFamily": "Amazon Ember"
+                }
+            ]
+        },
+        "textStyleBase0": {
+            "description": "Thin version of basic font",
+            "extend": "textStyleBase",
+            "values": {
+                "fontWeight": "100"
+            }
+        },
+        "textStyleBase1": {
+            "description": "Light version of basic font",
+            "extend": "textStyleBase",
+            "values": {
+                "fontWeight": "300"
+            }
+        },
+        "mixinBody": {
+            "values": {
+                "fontSize": "@textSizeBody"
+            }
+        },
+        "mixinPrimary": {
+            "values": {
+                "fontSize": "@textSizePrimary"
+            }
+        },
+        "mixinSecondary": {
+            "values": {
+                "fontSize": "@textSizeSecondary"
+            }
+        },
+        "textStylePrimary": {
+            "extend": [
+                "textStyleBase1",
+                "mixinPrimary"
+            ]
+        },
+        "textStyleSecondary": {
+            "extend": [
+                "textStyleBase0",
+                "mixinSecondary"
+            ]
+        },
+        "textStyleBody": {
+            "extend": [
+                "textStyleBase1",
+                "mixinBody"
+            ]
+        },
+        "textStyleSecondaryHint": {
+            "values": {
+                "fontFamily": "Bookerly",
+                "fontStyle": "italic",
+                "fontSize": "@textSizeSecondaryHint",
+                "color": "@colorTextPrimary"
+            }
+        }
+    },
+    "layouts": {},
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "when": "${viewport.shape == 'round'}",
+                "type": "Container",
+                "direction": "column",
+                "width": "100vw",
+                "height": "100vh",
+                "alignItems": "center",
+                "items": [
+                    {
+                        "type": "Image",
+                        "source": "${payload.preguntaData.image}",
+                        "scale": "best-fill",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "position": "absolute",
+                        "overlayColor": "rgba(0, 0, 0, 0.6)"
+                    },
+                    {
+                      "when": "${payload.preguntaData.respuestaDichaPorUsuarioIncorrecta != null}",    
+                      "type": "Frame",
+                      "borderRadius": "50vw",
+                      "position": "absolute",
+                      "backgroundColor": "rgba(255,0,0,50%)",
+                      "top": "10vh",
+                      "item": {
+                        "type": "Text",
+                        "text": "${payload.preguntaData.respuestaDichaPorUsuarioIncorrecta}",
+                        "width": "80vw",
+                        "height": "80vh",
+                        "textAlign": "center",
+                        "textAlignVertical": "bottom",
+                        "paddingBottom": "10vh"
+                      }
+                    },
+                    {
+                        "type": "ScrollView",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "item": [
+                            {
+                                "type": "Container",
+                                "direction": "column",
+                                "alignItems": "center",
+                                "paddingLeft": "70dp",
+                                "paddingRight": "70dp",
+                                "items": [
+                                    {
+                                        "type": "AlexaHeader",
+                                        "headerAttributionImage": "${payload.preguntaData.logoUrl}",
+                                        "headerTitle": "${payload.preguntaData.title}"
+                                    },
+                                    {
+                                        "type": "Text",
+                                        "text": "<b>${payload.preguntaData.title}</b>",
+                                        "style": "textStyleBody",
+                                        "width": "70vw",
+                                        "textAlign": "center"
+                                    },
+                                    {
+                                        "when": "${payload.preguntaData.alerta != null && payload.preguntaData.respuestaDichaPorUsuarioIncorrecta == null}",    
+                                        "type": "Container",
+                                        "direction": "column",
+                                        "alignItems": "center",
+                                        "paddingTop": "5vh",
+                                        "items": [
+                                            {
+                                                "type": "Image",
+                                                "source": "https://s3-eu-west-1.amazonaws.com/informacion-medicamentos/alert-128.png",
+                                                "scale": "best-fill",
+                                                "width": "10vw",
+                                                "height": "10vh"
+                                            },
+                                            {
+                                                "type": "Text",
+                                                "text": "${payload.preguntaData.alerta}",
+                                                "style": "textStylePrimary",
+                                                "width": "70vw",
+                                                "textAlign": "center"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "Container",
+                "width": "100vw",
+                "height": "100vh",
+                "items": [
+                    {
+                        "type": "Image",
+                        "source": "${payload.preguntaData.backgroundImage}",
+                        "scale": "best-fill",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "position": "absolute"
+                    },
+                    {
+                        "type": "AlexaHeader",
+                        "headerTitle": "${payload.preguntaData.title}",
+                        "headerAttributionImage": "${payload.preguntaData.logoUrl}"
+                    },
+                    {
+                        "type": "Text",
+                        "text": "${payload.preguntaData.enunciado}",
+                        "textAlign": "center",
+                        "paddingBottom": "3vh",
+                        "paddingLeft": "6.5vw",
+                        "paddingRight": "6.5vw",
+                        "style": "textStylePrimary"
+                    },
+                    {
+                        "type": "Container",
+                        "direction": "row",
+                        "paddingLeft": "60dp",
+                        "paddingRight": "72dp",
+                        "shrink": 1,
+                        "height": "100%",
+                        "items": [
+                            {
+                                "type": "Image",
+                                "source": "${payload.preguntaData.image}",
+                                "width": "45vw",
+                                "height": "100%",
+                                "scale": "fill",
+                                "align": "left"
+                            },
+                            {
+                                                    "when": "${payload.preguntaData.alerta != null}", 
+                                                    "type": "Frame",
+                                                    "position": "absolute",
+                                                    "bottom": "0",
+                                                    "backgroundColor": "orange",
+                                                    "width": "45vw",
+                                                    "item": {
+                                                        "type": "Text",
+                                                                "text": "${payload.preguntaData.alerta}",
+                                                                "style": "textStylePrimary",
+                                                                "textAlign": "center"
+                                                    }
+                            },
+                            {
+                                "type": "ScrollView",
+                                "height": "100%",
+                                "grow": 1,
+                                "shrink": 1,
+                                "paddingLeft": "0",
+                                "item": [
+                                    {
+                                        "type": "Container",
+                                        "alignItems": "start",
+                                        "items": [
+                                            {
+                                                "type": "TouchWrapper",
+                                                "width": "100%",
+                                                "item": {
+                                                    "type": "Frame",
+                                                    "backgroundColor": "${payload.preguntaData.colorA}",
+                                                    "grow": 1,
+                                                    "width": "100%",
+                                                    "item": {
+                                                        "type": "Container",
+                                                        "direction": "row",
+                                                        "width": "100%",
+                                                        "paddingBottom": "1vh",
+                                                        "paddingTop": "2vh",
+                                                        "paddingLeft": "2vh",
+                                                        "paddingRight": "2vh",
+                                                        "items": [
+                                                            {
+                                                                "type": "Text",
+                                                                "text": "A",
+                                                                "style": "textStyleBody",
+                                                                "paddingRight": "2vh"
+                                                            },
+                                                            {
+                                                                "type": "Text",
+                                                                "text": "${payload.preguntaData.respuestaA}",
+                                                                "style": "textStylePrimary",
+                                                                "shrink": 1,
+                                                                "textAlignVertical": "center"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "onPress": {
+                                                    "type": "SendEvent",
+                                                    "arguments": [
+                                                        "contestarPreguntaEvent",
+                                                        "A"
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "type": "TouchWrapper",
+                                                "width": "100%",
+                                                "item": {
+                                                    "type": "Frame",
+                                                    "backgroundColor": "${payload.preguntaData.colorB}",
+                                                    "grow": 1,
+                                                    "width": "100%",
+                                                    "item": {
+                                                        "type": "Container",
+                                                        "direction": "row",
+                                                        "width": "100%",
+                                                        "paddingBottom": "1vh",
+                                                        "paddingTop": "2vh",
+                                                        "paddingLeft": "2vh",
+                                                        "paddingRight": "2vh",
+                                                        "items": [
+                                                            {
+                                                                "type": "Text",
+                                                                "text": "B",
+                                                                "style": "textStyleBody",
+                                                                "paddingRight": "2vh"
+                                                            },
+                                                            {
+                                                                "type": "Text",
+                                                                "text": "${payload.preguntaData.respuestaB}",
+                                                                "style": "textStylePrimary",
+                                                                "shrink": 1,
+                                                                "textAlignVertical": "center"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                "onPress": {
+                                                    "type": "SendEvent",
+                                                    "arguments": [
+                                                        "contestarPreguntaEvent",
+                                                        "B"
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                "type": "TouchWrapper",
+                                                "width": "100%",
+                                                "item": {
+                                                    "type": "Frame",
+                                                    "backgroundColor": "${payload.preguntaData.colorC}",
+                                                    "grow": 1,
+                                                    "width": "100%",
+                                                    "item": {
+                                                        "type": "Container",
+                                                        "direction": "row",
+                                                        "width": "100%",
+                                                        "paddingBottom": "1vh",
+                                                        "paddingTop": "1vh",
+                                                        "paddingLeft": "2vh",
+                                                        "paddingRight": "2vh",
+                                                        "items": [
+                                                            {
+                                                                "type": "Text",
+                                                                "text": "C",
+                                                                "style": "textStyleBody",
+                                                                "paddingRight": "2vh"
+                                                            },
+                                                            {
+                                                                "type": "Text",
+                                                                "text": "${payload.preguntaData.respuestaC}",
+                                                                "style": "textStylePrimary",
+                                                                "shrink": 1,
+                                                                "textAlignVertical": "center"
+                                                            }
+                                                        ]
+                                                    }
+                                                },
+                                                 "onPress": {
+                                                    "type": "SendEvent",
+                                                    "arguments": [
+                                                        "contestarPreguntaEvent",
+                                                        "C"
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "AlexaFooter",
+                        "footerHint": "${payload.preguntaData.hintText}"
+                    },
+                    {
+                        "type": "TouchWrapper",
+                        "position": "absolute",
+                        "bottom": "2vw",
+                        "right":"2vw",
+                        "item": {
+                          "type": "Image",
+                          "source": "https://s3-eu-west-1.amazonaws.com/informacion-medicamentos/stats-icon.png",
+                          "scale": "fill",
+                          "width": "5vw",
+                          "height": "5vw"
+                        },
+                        "onPress": {
+                            "type": "SendEvent",
+                            "arguments": [
+                                "botonStatsClickEvent",
+                                "click"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

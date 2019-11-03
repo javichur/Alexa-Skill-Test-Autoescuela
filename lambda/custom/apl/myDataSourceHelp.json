@@ -1,0 +1,55 @@
+{
+        "helpData": {
+            "type": "object",
+            "objectId": "templateHelp",
+            "backgroundImageSmall": "https://s3-eu-west-1.amazonaws.com/informacion-medicamentos/fondo-test-autoescuela-small.jpg",
+            "backgroundImage": "https://s3-eu-west-1.amazonaws.com/informacion-medicamentos/fondo-test-autoescuela.jpg",
+            "title": "Test autoescuela",
+            "enunciadoAyuda":"Ayuda...",
+            "logoUrl": "https://images-na.ssl-images-amazon.com/images/I/41-YOr1NDoL._SL210_QL95_BG0,0,0,0_FMpng_.png",
+            "hintText": "Di...",
+            "otrasSkillsRecomendadas": "Otras skills..."
+        },
+        "listTemplateSkillsData": {
+        "listPage": {
+            "listItems": [
+                {
+                    "primaryText": "Sonidos infantiles",
+                    "secondaryText": "Alexa imitando sonidos de animales y cosas.",
+                    "image": "https://images-na.ssl-images-amazon.com/images/I/613kbTsKwRL._SL210_QL95_BG0,0,0,0_FMpng_.png"
+                },
+                {
+                    "primaryText": "Verbos irregulares",
+                    "secondaryText": "Practica los verbos irregulares del inglés.",
+                    "image": "https://images-na.ssl-images-amazon.com/images/I/51u9kzPGefL._SL210_QL95_BG0,0,0,0_FMpng_.png"
+                },
+                {
+                    "primaryText": "Información medicamentos",
+                    "secondaryText": "Prospectos de todos los medicamentos en España.",
+                    "image": "https://images-na.ssl-images-amazon.com/images/I/41ur0zFtjnL._SL210_QL95_BG0,0,0,0_FMpng_.png"
+                },
+                {
+                    "primaryText": "Lavaplatos estado",
+                    "secondaryText": "Recuerda si está limpio o sucio.",
+                    "image": "https://images-na.ssl-images-amazon.com/images/I/613mvA1ogoL._SL210_QL95_BG0,0,0,0_FMpng_.png"
+                },
+                {
+                    "primaryText": "Chistes buenos",
+                    "secondaryText": "Chistes con voces.",
+                    "image": "https://images-na.ssl-images-amazon.com/images/I/61ATrQOEblL._SL210_QL95_BG0,0,0,0_FMpng_.png"
+                },
+                {
+                    "primaryText": "Recomendador libros",
+                    "secondaryText": "Libros que me han gustado.",
+                    "image": "https://images-na.ssl-images-amazon.com/images/I/61ffpXSOOlL._SL210_QL95_BG0,0,0,0_FMpng_.png"
+                },
+                {
+                    "primaryText": "Cara o Cruz",
+                    "secondaryText": "Lanza una moneda.",
+                    "image": "https://images-na.ssl-images-amazon.com/images/I/71Zj7plR67L._SL210_QL95_BG0,0,0,0_FMpng_.png"
+                }
+
+            ]
+        }
+    }
+}

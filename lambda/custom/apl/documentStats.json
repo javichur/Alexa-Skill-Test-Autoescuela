@@ -1,0 +1,409 @@
+{
+    "type": "APL",
+    "version": "1.0",
+    "theme": "dark",
+    "import": [
+        {
+            "name": "alexa-layouts",
+            "version": "1.0.0"
+        }
+    ],
+    "resources": [
+        {
+            "description": "Stock color for the light theme",
+            "colors": {
+                "colorTextPrimary": "#151920"
+            }
+        },
+        {
+            "description": "Stock color for the dark theme",
+            "when": "${viewport.theme == 'dark'}",
+            "colors": {
+                "colorTextPrimary": "#f0f1ef"
+            }
+        },
+        {
+            "description": "Standard font sizes",
+            "dimensions": {
+                "textSizeBody": 48,
+                "textSizePrimary": 27,
+                "textSizeSecondary": 23,
+                "textSizeSecondaryHint": 25
+            }
+        },
+        {
+            "description": "Common spacing values",
+            "dimensions": {
+                "spacingThin": 6,
+                "spacingSmall": 12,
+                "spacingMedium": 24,
+                "spacingLarge": 48,
+                "spacingExtraLarge": 72
+            }
+        },
+        {
+            "description": "Common margins and padding",
+            "dimensions": {
+                "marginTop": 40,
+                "marginLeft": 60,
+                "marginRight": 60,
+                "marginBottom": 40
+            }
+        }
+    ],
+    "styles": {
+        "textStyleBase": {
+            "description": "Base font description; set color and core font family",
+            "values": [
+                {
+                    "color": "@colorTextPrimary",
+                    "fontFamily": "Amazon Ember"
+                }
+            ]
+        },
+        "textStyleBase0": {
+            "description": "Thin version of basic font",
+            "extend": "textStyleBase",
+            "values": {
+                "fontWeight": "100"
+            }
+        },
+        "textStyleBase1": {
+            "description": "Light version of basic font",
+            "extend": "textStyleBase",
+            "values": {
+                "fontWeight": "300"
+            }
+        },
+        "mixinBody": {
+            "values": {
+                "fontSize": "@textSizeBody"
+            }
+        },
+        "mixinPrimary": {
+            "values": {
+                "fontSize": "@textSizePrimary"
+            }
+        },
+        "mixinSecondary": {
+            "values": {
+                "fontSize": "@textSizeSecondary"
+            }
+        },
+        "textStylePrimary": {
+            "extend": [
+                "textStyleBase1",
+                "mixinPrimary"
+            ]
+        },
+        "textStyleSecondary": {
+            "extend": [
+                "textStyleBase0",
+                "mixinSecondary"
+            ]
+        },
+        "textStyleBody": {
+            "extend": [
+                "textStyleBase1",
+                "mixinBody"
+            ]
+        },
+        "textStyleSecondaryHint": {
+            "values": {
+                "fontFamily": "Bookerly",
+                "fontStyle": "italic",
+                "fontSize": "@textSizeSecondaryHint",
+                "color": "@colorTextPrimary"
+            }
+        },
+        "textStyleBase2": {
+            "description": "Regular version of basic font",
+            "extend": "textStyleBase",
+            "values": {
+                "fontWeight": "500"
+            }
+        },
+        "mixinDetails": {
+            "values": {
+                "fontSize": "@textSizeDetails"
+            }
+        },
+        "textStyleDetails": {
+            "extend": [
+                "textStyleBase2",
+                "mixinDetails"
+            ]
+        }
+    },
+    "layouts": {},
+    "mainTemplate": {
+        "parameters": [
+            "payload"
+        ],
+        "items": [
+            {
+                "when": "${viewport.shape == 'round'}",
+                "type": "Container",
+                "direction": "column",
+                "width": "100vw",
+                "height": "100vh",
+                "alignItems": "center",
+                "items": [
+                    {
+                        "type": "Image",
+                        "source": "${payload.statsData.backgroundImageSmall}",
+                        "scale": "best-fill",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "position": "absolute",
+                        "overlayColor": "rgba(0, 0, 0, 0.6)"
+                    },
+                    {
+                        "type": "ScrollView",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "item": [
+                            {
+                                "type": "Container",
+                                "direction": "column",
+                                "alignItems": "center",
+                                "paddingLeft": "70dp",
+                                "paddingRight": "70dp",
+                                "items": [
+                                    {
+                                        "type": "AlexaHeader",
+                                        "headerAttributionImage": "${payload.statsData.logoUrl}",
+                                        "headerTitle": "${payload.statsData.title}",
+                                        "headerBackButton": true,
+                                        "headerNavigationAction": "backEvent"
+                                    },
+                                    {
+                                        "type": "Text",
+                                        "text": "<b>${payload.statsData.title}</b>",
+                                        "style": "textStyleBody",
+                                        "width": "70vw",
+                                        "textAlign": "center"
+                                    },
+                                    {
+                                        "type": "Container",
+                                        "height": "10vh",
+                                        "width": "100%",
+                                        "items": [
+                                            {
+                                                "type": "Frame",
+                                                "backgroundColor": "${payload.statsData.color1}",
+                                                "height": "100%",
+                                                "width": "${payload.statsData.ancho1}",
+                                                "item": {
+                                                    "type": "Text",
+                                                    "text": "${payload.statsData.valor1}",
+                                                    "style": "textStylePrimary",
+                                                    "textAlignVertical": "center",
+                                                    "textAlign": "center",
+                                                    "height": "100%"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "Container",
+                                        "height": "10vh",
+                                        "width": "100%",
+                                        "items": [
+                                            {
+                                                "type": "Frame",
+                                                "backgroundColor": "${payload.statsData.color2}",
+                                                "height": "100%",
+                                                "width": "${payload.statsData.ancho2}",
+                                                "item": {
+                                                    "type": "Text",
+                                                    "text": "${payload.statsData.valor2}",
+                                                    "style": "textStylePrimary",
+                                                    "textAlignVertical": "center",
+                                                    "textAlign": "center",
+                                                    "height": "100%"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "Container",
+                                        "height": "10vh",
+                                        "width": "100%",
+                                        "items": [
+                                            {
+                                                "type": "Frame",
+                                                "backgroundColor": "${payload.statsData.color3}",
+                                                "height": "100%",
+                                                "width": "${payload.statsData.ancho3}",
+                                                "item": {
+                                                    "type": "Text",
+                                                    "text": "${payload.statsData.valor3}",
+                                                    "style": "textStylePrimary",
+                                                    "textAlignVertical": "center",
+                                                    "textAlign": "center",
+                                                    "height": "100%"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "AlexaFooter",
+                                        "footerHint": "${payload.statsData.hintText}"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "Container",
+                "width": "100vw",
+                "height": "100vh",
+                "items": [
+                    {
+                        "type": "Image",
+                        "source": "${payload.statsData.backgroundImage}",
+                        "scale": "best-fill",
+                        "width": "100vw",
+                        "height": "100vh",
+                        "position": "absolute"
+                    },
+                    {
+                        "type": "AlexaHeader",
+                        "headerTitle": "${payload.statsData.title}",
+                        "headerAttributionImage": "${payload.statsData.logoUrl}",
+                        "headerBackButton": true,
+                        "headerNavigationAction": "backEvent"
+                    },
+                    {
+                        "type": "Text",
+                        "text": "${payload.statsData.enunciadoStats}",
+                        "textAlign": "center",
+                        "paddingBottom": "3vh",
+                        "paddingLeft": "6.5vw",
+                        "paddingRight": "6.5vw",
+                        "style": "textStylePrimary"
+                    },
+                    {
+                        "type": "Container",
+                        "width": "100vw",
+                        "height": "62vh",
+                        "direction": "row",
+                        "paddingLeft": "6.5vw",
+                        "paddingRight": "6.5vw",
+                        "items": [
+                            {
+                                "type": "Container",
+                                "width": "20vw",
+                                "direction": "column",
+                                "paddingRight": "2vw",
+                                "items": [
+                                    {
+                                        "type": "Text",
+                                        "text": "${payload.statsData.leyenda1}",
+                                        "style": "textStylePrimary",
+                                        "textAlignVertical": "center",
+                                        "height": "20vh"
+                                    },
+                                    {
+                                        "type": "Text",
+                                        "text": "${payload.statsData.leyenda2}",
+                                        "style": "textStylePrimary",
+                                        "textAlignVertical": "center",
+                                        "height": "20vh"
+                                    },
+                                    {
+                                        "type": "Text",
+                                        "text": "${payload.statsData.leyenda3}",
+                                        "style": "textStylePrimary",
+                                        "textAlignVertical": "center",
+                                        "height": "20vh"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "Container",
+                                "width": "67vw",
+                                "direction": "column",
+                                "items": [
+                                    {
+                                        "type": "Container",
+                                        "paddingTop": "2vh",
+                                        "paddingBottom": "2vh",
+                                        "height": "20vh",
+                                        "items": [
+                                            {
+                                                "type": "Frame",
+                                                "backgroundColor": "${payload.statsData.color1}",
+                                                "height": "100%",
+                                                "width": "${payload.statsData.ancho1}",
+                                                "item": {
+                                                    "type": "Text",
+                                                    "text": "${payload.statsData.valor1}",
+                                                    "style": "textStylePrimary",
+                                                    "textAlignVertical": "center",
+                                                    "textAlign": "center",
+                                                    "height": "100%"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "Container",
+                                        "paddingTop": "2vh",
+                                        "paddingBottom": "2vh",
+                                        "height": "20vh",
+                                        "items": [
+                                            {
+                                                "type": "Frame",
+                                                "backgroundColor": "${payload.statsData.color2}",
+                                                "height": "100%",
+                                                "width": "${payload.statsData.ancho2}",
+                                                "item": {
+                                                    "type": "Text",
+                                                    "text": "${payload.statsData.valor2}",
+                                                    "style": "textStylePrimary",
+                                                    "textAlignVertical": "center",
+                                                    "textAlign": "center",
+                                                    "height": "100%"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "Container",
+                                        "paddingTop": "2vh",
+                                        "paddingBottom": "2vh",
+                                        "height": "20vh",
+                                        "items": [
+                                            {
+                                                "type": "Frame",
+                                                "backgroundColor": "${payload.statsData.color3}",
+                                                "height": "100%",
+                                                "width": "${payload.statsData.ancho3}",
+                                                "item": {
+                                                    "type": "Text",
+                                                    "text": "${payload.statsData.valor3}",
+                                                    "style": "textStylePrimary",
+                                                    "textAlignVertical": "center",
+                                                    "textAlign": "center",
+                                                    "height": "100%"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "AlexaFooter",
+                        "footerHint": "${payload.statsData.hintText}"
+                    }
+                ]
+            }
+        ]
+    }
+}

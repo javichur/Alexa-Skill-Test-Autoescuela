@@ -1,0 +1,21 @@
+{
+        "preguntaData": {
+            "type": "object",
+            "objectId": "templatePreguntaTest",
+            "backgroundImageSmall": "https://s3-eu-west-1.amazonaws.com/informacion-medicamentos/fondo-test-autoescuela-small.jpg",
+            "backgroundImage": "https://s3-eu-west-1.amazonaws.com/informacion-medicamentos/fondo-test-autoescuela.jpg",
+            "title": "Test autoescuela",
+            "image": "http://revista.dgt.es/Galerias/test/N-242/Test242-Preguntaextra.jpg",
+            "enunciado":"Uno de los pasajeros del turismo que Vd. conduce no lleva puesto el cinturón de seguridad. Si un agente de la autoridad denuncia la infracción, ¿quién es el responsable?",
+            "respuestaA":"texto resuesta A",
+            "respuestaB":"texto respuesta B",
+            "respuestaC":"texto respuesta C",
+            "colorA":"@colorGray800",
+            "colorB":"@colorGray800",
+            "colorC":"@colorGray800",
+            "respuestaDichaPorUsuarioIncorrecta": "X",
+            "logoUrl": "https://images-na.ssl-images-amazon.com/images/I/41-YOr1NDoL._SL210_QL95_BG0,0,0,0_FMpng_.png",
+            "hintText": "Di...",
+            "alerta": null
+        }
+}

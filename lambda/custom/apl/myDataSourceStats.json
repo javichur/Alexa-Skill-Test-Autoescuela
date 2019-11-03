@@ -1,0 +1,24 @@
+{
+    "statsData": {
+        "type": "object",
+        "objectId": "templateStats",
+        "backgroundImageSmall": "https://s3-eu-west-1.amazonaws.com/informacion-medicamentos/fondo-test-autoescuela-small.jpg",
+        "backgroundImage": "https://s3-eu-west-1.amazonaws.com/informacion-medicamentos/fondo-test-autoescuela.jpg",
+        "title": "Test autoescuela",
+        "enunciadoStats": "Tus estadísticas",
+        "logoUrl": "https://images-na.ssl-images-amazon.com/images/I/41-YOr1NDoL._SL210_QL95_BG0,0,0,0_FMpng_.png",
+        "hintText": "Di volver",
+        "leyenda1": "Total preguntas contestadas",
+        "leyenda2": "Preguntas acertadas",
+        "leyenda3": "Preguntas falladas",
+        "valor1": "50 (100%)",
+        "valor2": "40 (xx%)",
+        "valor3": "10 (yy%)",
+        "ancho1": "100%",
+        "ancho2": "60%",
+        "ancho3": "40%",
+        "color1": "@colorBlue800",
+        "color2": "@colorGreen800",
+        "color3": "@colorRed800"
+    }
+}

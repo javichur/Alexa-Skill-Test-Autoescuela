@@ -1,0 +1,26 @@
+{
+  "name": "testautoescuela",
+  "version": "3.0.0",
+  "description": "Preguntas de test de autoescuela, para permiso B de conducir en España",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "autoescuela",
+    "test",
+    "permiso",
+    "conducir",
+    "coche",
+    "examen",
+    "dgt"
+  ],
+  "author": "Javier Campos",
+  "homepage": "https://github.com/javichur/Alexa-Skill-Test-Autoescuela/",
+  "dependencies": {
+    "ask-sdk-core": "^2.0.0",
+    "ask-sdk-model": "^1.0.0",
+    "aws-sdk": "^2.562.0",
+    "dynamola": "^1.4.5"
+  }
+}

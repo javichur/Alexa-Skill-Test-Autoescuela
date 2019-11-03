@@ -1,0 +1,142 @@
+{
+  "interactionModel": {
+      "languageModel": {
+          "invocationName": "driving test",
+          "intents": [
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": [
+                      "cancel"
+                  ]
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": [
+                      "help me",
+                      "help"
+                  ]
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": [
+                      "stop"
+                  ]
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              },
+              {
+                  "name": "RespuestaIntent",
+                  "slots": [
+                      {
+                          "name": "respuesta",
+                          "type": "TipoRespuesta"
+                      }
+                  ],
+                  "samples": [
+                      "Answer {respuesta}",
+                      "Option {respuesta}",
+                      "{respuesta}",
+                      "Number {respuesta}",
+                      "Letter {respuesta}"
+                  ]
+              },
+              {
+                  "name": "AMAZON.RepeatIntent",
+                  "samples": [
+                      "repeat",
+                      "repeat please",
+                      "replay",
+                      "replay please",
+                      "repeat the question",
+                      "repeat the question please"
+                  ]
+              },
+              {
+                  "name": "AMAZON.NextIntent",
+                  "samples": [
+                      "move on to the next question",
+                      "move to the next question",
+                      "move on to the next",
+                      "skip this question",
+                      "skip the question",
+                      "skip one question",
+                      "skip this",
+                      "skip",
+                      "omit the question",
+                      "omit this questiona",
+                      "omit question",
+                      "omit",
+                      "continue",
+                      "other question",
+                      "onother question",
+                      "next question please",
+                      "next please",
+                      "next question",
+                      "next",
+                      "follow",
+                      "following question",
+                      "following question please"
+                  ]
+              },
+              {
+                  "name": "StatsIntent",
+                  "slots": [],
+                  "samples": [
+                      "statistics",
+                      "stats"
+                  ]
+              },
+              {
+                  "name": "VolverIntent",
+                  "slots": [],
+                  "samples": [
+                      "go back",
+                      "get back",
+                      "back"
+                  ]
+              }
+          ],
+          "types": [
+              {
+                  "name": "TipoRespuesta",
+                  "values": [
+                      {
+                          "name": {
+                              "value": "C",
+                              "synonyms": [
+                                  "c",
+                                  "ci",
+                                  "third",
+                                  "three"
+                              ]
+                          }
+                      },
+                      {
+                          "name": {
+                              "value": "B",
+                              "synonyms": [
+                                  "b",
+                                  "bi",
+                                  "second",
+                                  "two"
+                              ]
+                          }
+                      },
+                      {
+                          "name": {
+                              "value": "A",
+                              "synonyms": [
+                                  "a",
+                                  "first",
+                                  "one"
+                              ]
+                          }
+                      }
+                  ]
+              }
+          ]
+      }
+  }
+}

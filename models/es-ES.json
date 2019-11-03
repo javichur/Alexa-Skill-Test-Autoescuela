@@ -1,0 +1,201 @@
+{
+  "interactionModel": {
+      "languageModel": {
+          "invocationName": "test autoescuela",
+          "intents": [
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": [
+                      "cancele",
+                      "cancela",
+                      "cancelar"
+                  ]
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": [
+                      "ayuda me",
+                      "help",
+                      "no comprendo",
+                      "no entiendo esto",
+                      "qué es",
+                      "qué es esto",
+                      "ayúdame",
+                      "ayuda"
+                  ]
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": [
+                      "fin",
+                      "apagar",
+                      "terminar",
+                      "sal",
+                      "salir",
+                      "termina",
+                      "para",
+                      "parar",
+                      "stop"
+                  ]
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              },
+              {
+                  "name": "RespuestaIntent",
+                  "slots": [
+                      {
+                          "name": "respuesta",
+                          "type": "TipoRespuesta"
+                      }
+                  ],
+                  "samples": [
+                      "Elijo la {respuesta}",
+                      "La opción correcta es la {respuesta}",
+                      "La respuesta correcta es la {respuesta}",
+                      "Respuesta {respuesta}",
+                      "Opción {respuesta}",
+                      "La opción {respuesta}",
+                      "{respuesta}",
+                      "La {respuesta}",
+                      "La respuesta correcta {respuesta}",
+                      "La respuesta correcta es {respuesta}"
+                  ]
+              },
+              {
+                  "name": "AMAZON.RepeatIntent",
+                  "samples": [
+                      "repetir por favor",
+                      "repetir",
+                      "repita",
+                      "repite por favor",
+                      "repite"
+                  ]
+              },
+              {
+                  "name": "AMAZON.NextIntent",
+                  "samples": [
+                      "pasar a la siguiente pregunta",
+                      "pasar a otra pregunta",
+                      "pasar a la siguiente",
+                      "saltar esta pregunta",
+                      "salta esta pregunta",
+                      "sáltate esta pregunta",
+                      "sáltate",
+                      "saltar",
+                      "salta",
+                      "omitir la pregunta",
+                      "omitir esta pregunta",
+                      "omitir",
+                      "continua",
+                      "continuar",
+                      "otra pregunta",
+                      "next",
+                      "siguiente pregunta por favor",
+                      "siguiente por favor",
+                      "siguiente pregunta",
+                      "siguiente"
+                  ]
+              },
+              {
+                  "name": "StatsIntent",
+                  "slots": [],
+                  "samples": [
+                      "enséñame los resultados",
+                      "resultados",
+                      "ver los resultados",
+                      "enséñame las estadísticas",
+                      "stats",
+                      "quiero ver las estadísticas",
+                      "muéstrame las estadísticas",
+                      "ver las estadísticas",
+                      "ver estadísticas",
+                      "estadísticas"
+                  ]
+              },
+              {
+                  "name": "VolverIntent",
+                  "slots": [],
+                  "samples": [
+                      "vuelve",
+                      "ir atrás",
+                      "atrás",
+                      "volver"
+                  ]
+              }
+          ],
+          "types": [
+              {
+                  "name": "TipoRespuesta",
+                  "values": [
+                      {
+                          "name": {
+                              "value": "E",
+                              "synonyms": [
+                                  "sinco",
+                                  "cinco",
+                                  "quinto",
+                                  "quinta",
+                                  "he",
+                                  "e"
+                              ]
+                          }
+                      },
+                      {
+                          "name": {
+                              "value": "D",
+                              "synonyms": [
+                                  "cuatro",
+                                  "cuarto",
+                                  "cuarta",
+                                  "dé",
+                                  "de",
+                                  "d"
+                              ]
+                          }
+                      },
+                      {
+                          "name": {
+                              "value": "C",
+                              "synonyms": [
+                                  "se",
+                                  "ce",
+                                  "c",
+                                  "tercera",
+                                  "tercero",
+                                  "tres"
+                              ]
+                          }
+                      },
+                      {
+                          "name": {
+                              "value": "B",
+                              "synonyms": [
+                                  "ve",
+                                  "be",
+                                  "b",
+                                  "segundo",
+                                  "segunda",
+                                  "dos"
+                              ]
+                          }
+                      },
+                      {
+                          "name": {
+                              "value": "A",
+                              "synonyms": [
+                                  "a",
+                                  "primera",
+                                  "primero",
+                                  "una ",
+                                  "uno"
+                              ]
+                          }
+                      }
+                  ]
+              }
+          ]
+      }
+  }
+}
