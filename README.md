@@ -6,6 +6,14 @@ Código fuente traducido a castellano y con comentarios "extra".
 
 Siénte libre para utilizar este proyecto como punto de partida para crear tu Skill de tipo Quiz / Trivial / preguntas y respuestas.
 
+Utiliza como base el template siguiente (explicado más abajo): <https://github.com/javichur/alexa-skill-clean-code-template>.
+
+## Funciona en dispositivos Alexa SIN pantalla y CON pantalla 
+
+![Compatible con dispositivos Alexa con pantalla](./assets-readme/test-autoescuela-apl-1.png "Compatible con dispositivos Alexa con pantalla")
+
+![Compatible con dispositivos Alexa con pantalla](./assets-readme/test-autoescuela-apl-2.png "Compatible con dispositivos Alexa con pantalla")
+
 ## Configuración
 
 Para reutilizar esta skill, recuerda hacer estos cambios:
@@ -25,6 +33,7 @@ Para reutilizar esta skill, recuerda hacer estos cambios:
 - [x] Get user info like name, email or phone (CheckPermisionsIntent).
 - [x] Using built-in slots (ColorIntent).
 - [x] APL touch support (ListadoItemSelected).
+- [x] And more!
 
 2. Al configurar tu función Lambda en AWS, recuerda habilitar que solo pueda ser invocada por el APPLICATION_ID de tu Skill. Esde ID lo obtendrás en https://developer.amazon.com/alexa/console/ask
 3. Esta versión está preparada para preguntas con 3 opciones posibles (A, B y C), pero es fácil modificarla para añadir más.
